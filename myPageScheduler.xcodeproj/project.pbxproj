@@ -1,0 +1,309 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		3E8CFAE5153C5057006D294F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8CFAE4153C5057006D294F /* UIKit.framework */; };
+		3E8CFAE7153C5057006D294F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8CFAE6153C5057006D294F /* Foundation.framework */; };
+		3E8CFAE9153C5057006D294F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8CFAE8153C5057006D294F /* CoreGraphics.framework */; };
+		3E8CFAEB153C5057006D294F /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3E8CFAEA153C5057006D294F /* CoreData.framework */; };
+		3E8CFAF1153C5057006D294F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 3E8CFAEF153C5057006D294F /* InfoPlist.strings */; };
+		3E8CFAF3153C5057006D294F /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8CFAF2153C5057006D294F /* main.m */; };
+		3E8CFAF7153C5057006D294F /* MDRAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8CFAF6153C5057006D294F /* MDRAppDelegate.m */; };
+		3E8CFAFA153C5057006D294F /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3E8CFAF8153C5057006D294F /* MainStoryboard.storyboard */; };
+		3E8CFAFD153C5057006D294F /* myPageScheduler.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 3E8CFAFB153C5057006D294F /* myPageScheduler.xcdatamodeld */; };
+		3E8CFB00153C5057006D294F /* MDRMasterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8CFAFF153C5057006D294F /* MDRMasterViewController.m */; };
+		3E8CFB03153C5057006D294F /* MDRDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3E8CFB02153C5057006D294F /* MDRDetailViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3E8CFAE0153C5057006D294F /* myPageScheduler.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = myPageScheduler.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E8CFAE4153C5057006D294F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		3E8CFAE6153C5057006D294F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3E8CFAE8153C5057006D294F /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		3E8CFAEA153C5057006D294F /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		3E8CFAEE153C5057006D294F /* myPageScheduler-Info.plist */ = {isa = PBXFileReference; path = "myPageScheduler-Info.plist"; sourceTree = "<group>"; };
+		3E8CFAF0153C5057006D294F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		3E8CFAF2153C5057006D294F /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		3E8CFAF4153C5057006D294F /* myPageScheduler-Prefix.pch */ = {isa = PBXFileReference; path = "myPageScheduler-Prefix.pch"; sourceTree = "<group>"; };
+		3E8CFAF5153C5057006D294F /* MDRAppDelegate.h */ = {isa = PBXFileReference; path = MDRAppDelegate.h; sourceTree = "<group>"; };
+		3E8CFAF6153C5057006D294F /* MDRAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDRAppDelegate.m; sourceTree = "<group>"; };
+		3E8CFAF9153C5057006D294F /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard.storyboard; sourceTree = "<group>"; };
+		3E8CFAFC153C5057006D294F /* myPageScheduler.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = myPageScheduler.xcdatamodel; sourceTree = "<group>"; };
+		3E8CFAFE153C5057006D294F /* MDRMasterViewController.h */ = {isa = PBXFileReference; path = MDRMasterViewController.h; sourceTree = "<group>"; };
+		3E8CFAFF153C5057006D294F /* MDRMasterViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDRMasterViewController.m; sourceTree = "<group>"; };
+		3E8CFB01153C5057006D294F /* MDRDetailViewController.h */ = {isa = PBXFileReference; path = MDRDetailViewController.h; sourceTree = "<group>"; };
+		3E8CFB02153C5057006D294F /* MDRDetailViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDRDetailViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		3E8CFADD153C5057006D294F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E8CFAE5153C5057006D294F /* UIKit.framework in Frameworks */,
+				3E8CFAE7153C5057006D294F /* Foundation.framework in Frameworks */,
+				3E8CFAE9153C5057006D294F /* CoreGraphics.framework in Frameworks */,
+				3E8CFAEB153C5057006D294F /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		3E8CFAD5153C5057006D294F = {
+			isa = PBXGroup;
+			children = (
+				3E8CFAEC153C5057006D294F /* myPageScheduler */,
+				3E8CFAE3153C5057006D294F /* Frameworks */,
+				3E8CFAE1153C5057006D294F /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3E8CFAE1153C5057006D294F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				3E8CFAE0153C5057006D294F /* myPageScheduler.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		3E8CFAE3153C5057006D294F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3E8CFAE4153C5057006D294F /* UIKit.framework */,
+				3E8CFAE6153C5057006D294F /* Foundation.framework */,
+				3E8CFAE8153C5057006D294F /* CoreGraphics.framework */,
+				3E8CFAEA153C5057006D294F /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		3E8CFAEC153C5057006D294F /* myPageScheduler */ = {
+			isa = PBXGroup;
+			children = (
+				3E8CFAF5153C5057006D294F /* MDRAppDelegate.h */,
+				3E8CFAF6153C5057006D294F /* MDRAppDelegate.m */,
+				3E8CFAF8153C5057006D294F /* MainStoryboard.storyboard */,
+				3E8CFAFE153C5057006D294F /* MDRMasterViewController.h */,
+				3E8CFAFF153C5057006D294F /* MDRMasterViewController.m */,
+				3E8CFB01153C5057006D294F /* MDRDetailViewController.h */,
+				3E8CFB02153C5057006D294F /* MDRDetailViewController.m */,
+				3E8CFAFB153C5057006D294F /* myPageScheduler.xcdatamodeld */,
+				3E8CFAED153C5057006D294F /* Supporting Files */,
+			);
+			path = myPageScheduler;
+			sourceTree = "<group>";
+		};
+		3E8CFAED153C5057006D294F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3E8CFAEE153C5057006D294F /* myPageScheduler-Info.plist */,
+				3E8CFAEF153C5057006D294F /* InfoPlist.strings */,
+				3E8CFAF2153C5057006D294F /* main.m */,
+				3E8CFAF4153C5057006D294F /* myPageScheduler-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		3E8CFADF153C5057006D294F /* myPageScheduler */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 3E8CFB06153C5057006D294F /* Build configuration list for PBXNativeTarget "myPageScheduler" */;
+			buildPhases = (
+				3E8CFADC153C5057006D294F /* Sources */,
+				3E8CFADD153C5057006D294F /* Frameworks */,
+				3E8CFADE153C5057006D294F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = myPageScheduler;
+			productName = myPageScheduler;
+			productReference = 3E8CFAE0153C5057006D294F /* myPageScheduler.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		3E8CFAD7153C5057006D294F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MDR;
+				LastUpgradeCheck = 0430;
+			};
+			buildConfigurationList = 3E8CFADA153C5057006D294F /* Build configuration list for PBXProject "myPageScheduler" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 3E8CFAD5153C5057006D294F;
+			productRefGroup = 3E8CFAE1153C5057006D294F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				3E8CFADF153C5057006D294F /* myPageScheduler */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		3E8CFADE153C5057006D294F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E8CFAF1153C5057006D294F /* InfoPlist.strings in Resources */,
+				3E8CFAFA153C5057006D294F /* MainStoryboard.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		3E8CFADC153C5057006D294F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E8CFAF3153C5057006D294F /* main.m in Sources */,
+				3E8CFAF7153C5057006D294F /* MDRAppDelegate.m in Sources */,
+				3E8CFAFD153C5057006D294F /* myPageScheduler.xcdatamodeld in Sources */,
+				3E8CFB00153C5057006D294F /* MDRMasterViewController.m in Sources */,
+				3E8CFB03153C5057006D294F /* MDRDetailViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		3E8CFAEF153C5057006D294F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E8CFAF0153C5057006D294F /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		3E8CFAF8153C5057006D294F /* MainStoryboard.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3E8CFAF9153C5057006D294F /* en */,
+			);
+			name = MainStoryboard.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		3E8CFB04153C5057006D294F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		3E8CFB05153C5057006D294F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		3E8CFB07153C5057006D294F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "myPageScheduler/myPageScheduler-Prefix.pch";
+				INFOPLIST_FILE = "myPageScheduler/myPageScheduler-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		3E8CFB08153C5057006D294F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "myPageScheduler/myPageScheduler-Prefix.pch";
+				INFOPLIST_FILE = "myPageScheduler/myPageScheduler-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		3E8CFADA153C5057006D294F /* Build configuration list for PBXProject "myPageScheduler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E8CFB04153C5057006D294F /* Debug */,
+				3E8CFB05153C5057006D294F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		3E8CFB06153C5057006D294F /* Build configuration list for PBXNativeTarget "myPageScheduler" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3E8CFB07153C5057006D294F /* Debug */,
+				3E8CFB08153C5057006D294F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		3E8CFAFB153C5057006D294F /* myPageScheduler.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				3E8CFAFC153C5057006D294F /* myPageScheduler.xcdatamodel */,
+			);
+			currentVersion = 3E8CFAFC153C5057006D294F /* myPageScheduler.xcdatamodel */;
+			path = myPageScheduler.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 3E8CFAD7153C5057006D294F /* Project object */;
+}
