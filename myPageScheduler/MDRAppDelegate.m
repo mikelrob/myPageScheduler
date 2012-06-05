@@ -8,7 +8,8 @@
 
 #import "MDRAppDelegate.h"
 
-#import "MDRMasterViewController.h"
+//#import "MDRSettingViewController.h"
+#import "MDRMainViewController.h"
 
 @implementation MDRAppDelegate
 
@@ -21,7 +22,7 @@
 {
     // Override point for customization after application launch.
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-    MDRMasterViewController *controller = (MDRMasterViewController *)navigationController.topViewController;
+    MDRMainViewController *controller = (MDRMainViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
     return YES;
 }
