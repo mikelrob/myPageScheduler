@@ -152,8 +152,9 @@
                 case 0:
                 {
                     //sign out
-                    [self.navigationController popViewControllerAnimated:YES];
-                    MDRMainViewController *mainView = (MDRMainViewController *)[[self.navigationController viewControllers] objectAtIndex:0];
+                    UINavigationController *navController = self.navigationController;
+                    [navController popViewControllerAnimated:YES];
+                    MDRMainViewController *mainView = (MDRMainViewController *)[[navController viewControllers] objectAtIndex:0];
                     NSURL *addressURL = [NSURL URLWithString:@"https://mypage.apple.com/myPage?logout=true"];
                     NSURLRequest *URLRequest = [NSURLRequest requestWithURL:addressURL];
                     [mainView.theWebView loadRequest:URLRequest];
