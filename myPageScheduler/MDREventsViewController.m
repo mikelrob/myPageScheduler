@@ -56,7 +56,7 @@
         alert.tag = 0;
         [alert show];
         
-    }else {
+    } else {
         NSArray *localCalendars = [theEventStore calendars];
         EKCalendar *calendar;
         for (EKCalendar *prospective in localCalendars) {
@@ -70,16 +70,37 @@
         for (WorkEvent *workEvent in self.eventsArray) {
             EKEvent *calendarEvent = [EKEvent eventWithEventStore:theEventStore];
             //test for day off
-            if ([workEvent.startDate compare:workEvent.endDate] == NSOrderedSame 
-                && !([calendarEvent.title caseInsensitiveCompare:@"Holiday"] == NSOrderedSame)) {
-                if ([self.settings displaysOnDaysOff]) {
-                    calendarEvent.title = @"Day Off";
+            if ([workEvent.startDate compare:workEvent.endDate] == NSOrderedSame){
+                if ([workEvent.name caseInsensitiveCompare:@"Holiday"] == NSOrderedSame) {
+                    calendarEvent.title = @"Holiday";
                     calendarEvent.location = nil;
                     calendarEvent.allDay = TRUE;
                     calendarEvent.calendar = calendar;
                     calendarEvent.startDate = workEvent.startDate;
                     calendarEvent.endDate = workEvent.endDate;
+                } else {
+                    if ([self.settings displaysOnDaysOff]) {
+                        calendarEvent.title = @"Day Off";
+                        calendarEvent.location = nil;
+                        calendarEvent.allDay = TRUE;
+                        calendarEvent.calendar = calendar;
+                        calendarEvent.startDate = workEvent.startDate;
+                        calendarEvent.endDate = workEvent.endDate;
+                    }
                 }
+                
+                
+//                if (!([calendarEvent.title caseInsensitiveCompare:@"Holiday"] == NSOrderedSame)) {
+//                    calendarEvent.title = @"Day Off";
+//                } else {
+//                    ;
+//                }
+//                    calendarEvent.location = nil;
+//                    calendarEvent.allDay = TRUE;
+//                    calendarEvent.calendar = calendar;
+//                    calendarEvent.startDate = workEvent.startDate;
+//                    calendarEvent.endDate = workEvent.endDate;
+
             } else {
                 calendarEvent.title = [self.settings eventName];
                 calendarEvent.location = [self.settings eventLocation];
@@ -89,19 +110,23 @@
                 calendarEvent.allDay = [workEvent.allDay boolValue];
             }
             
+            
             NSError *error;
             BOOL saveSuccess = [theEventStore saveEvent:calendarEvent span:EKSpanThisEvent commit:YES error:&error];
-            if (!saveSuccess) {
+            if (saveSuccess) {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Calendar Events Saved!"
+                                                                message:@"Would you like to sign out?"
+                                                               delegate:self 
+                                                      cancelButtonTitle:@"Sign Out" 
+                                                      otherButtonTitles:@"No", nil];
+                alert.tag = 1;
+                [alert show];
+            } else {
                 NSLog(@"%@", error.description);
             }
+            //check calendar for confirmation of events saved and animate 'save' text in button to √
         }
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil
-                                                        message:@"Would you like to sign out?"
-                                                       delegate:self 
-                                              cancelButtonTitle:@"Sign Out" 
-                                              otherButtonTitles:@"No", nil];
-        alert.tag = 1;
-        [alert show];
+
     }
 }
 
