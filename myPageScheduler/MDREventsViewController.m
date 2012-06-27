@@ -66,7 +66,8 @@
             }
         }
 
-        
+        NSError *error;
+        BOOL saveSuccess = FALSE;
         for (WorkEvent *workEvent in self.eventsArray) {
             EKEvent *calendarEvent = [EKEvent eventWithEventStore:theEventStore];
             //test for day off
@@ -88,8 +89,6 @@
                         calendarEvent.endDate = workEvent.endDate;
                     }
                 }
-                
-                
 //                if (!([calendarEvent.title caseInsensitiveCompare:@"Holiday"] == NSOrderedSame)) {
 //                    calendarEvent.title = @"Day Off";
 //                } else {
@@ -100,7 +99,6 @@
 //                    calendarEvent.calendar = calendar;
 //                    calendarEvent.startDate = workEvent.startDate;
 //                    calendarEvent.endDate = workEvent.endDate;
-
             } else {
                 calendarEvent.title = [self.settings eventName];
                 calendarEvent.location = [self.settings eventLocation];
@@ -109,23 +107,21 @@
                 calendarEvent.endDate = workEvent.endDate;
                 calendarEvent.allDay = [workEvent.allDay boolValue];
             }
-            
-            
-            NSError *error;
-            BOOL saveSuccess = [theEventStore saveEvent:calendarEvent span:EKSpanThisEvent commit:YES error:&error];
-            if (saveSuccess) {
-                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Calendar Events Saved!"
-                                                                message:@"Would you like to sign out?"
-                                                               delegate:self 
-                                                      cancelButtonTitle:@"Sign Out" 
-                                                      otherButtonTitles:@"No", nil];
-                alert.tag = 1;
-                [alert show];
-            } else {
-                NSLog(@"%@", error.description);
-            }
+            saveSuccess = [theEventStore saveEvent:calendarEvent span:EKSpanThisEvent commit:YES error:&error];
             //check calendar for confirmation of events saved and animate 'save' text in button to √
         }
+        if (saveSuccess) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Calendar Events Saved!"
+                                                            message:@"Would you like to sign out?"
+                                                           delegate:self 
+                                                  cancelButtonTitle:@"Sign Out" 
+                                                  otherButtonTitles:@"No", nil];
+            alert.tag = 1;
+            [alert show];
+        } else {
+            NSLog(@"%@", error.description);
+        }
+
 
     }
 }
