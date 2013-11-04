@@ -24,6 +24,7 @@
     UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
     MDRMainViewController *controller = (MDRMainViewController *)navigationController.topViewController;
     controller.managedObjectContext = self.managedObjectContext;
+    [UIApplication sharedApplication].statusBarHidden = NO;
     return YES;
 }
 							
@@ -83,6 +84,8 @@
     if (coordinator != nil) {
         __managedObjectContext = [[NSManagedObjectContext alloc] init];
         [__managedObjectContext setPersistentStoreCoordinator:coordinator];
+//        NSUndoManager *undoManager = [[NSUndoManager alloc] init];
+//        __managedObjectContext.undoManager = undoManager;
     }
     return __managedObjectContext;
 }
@@ -110,8 +113,11 @@
     NSURL *storeURL = [[self applicationDocumentsDirectory] URLByAppendingPathComponent:@"myPageScheduler.sqlite"];
     
     NSError *error = nil;
+    NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithBool:YES], NSMigratePersistentStoresAutomaticallyOption, 
+                             [NSNumber numberWithBool:YES], NSInferMappingModelAutomaticallyOption, 
+                             nil];
     __persistentStoreCoordinator = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:[self managedObjectModel]];
-    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:nil error:&error]) {
+    if (![__persistentStoreCoordinator addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error]) {
         /*
          Replace this implementation with code to handle the error appropriately.
          
@@ -136,7 +142,10 @@
          
          */
         NSLog(@"Unresolved error %@, %@", error, [error userInfo]);
-        abort();
+        //remove existing DB
+        [[NSFileManager defaultManager] removeItemAtURL:storeURL error:nil];
+        //return the result of recalling this method
+        return [self persistentStoreCoordinator];
     }    
     
     return __persistentStoreCoordinator;

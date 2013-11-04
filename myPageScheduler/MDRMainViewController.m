@@ -17,7 +17,13 @@ enum kAlertType {
     kAlert
     };
 
-@interface MDRMainViewController ()
+@interface MDRMainViewController () {
+    IBOutlet UIBarButtonItem *exportButton;
+    IBOutlet UIBarButtonItem *backButton;
+    IBOutlet UIBarButtonItem *forwardButton;
+    NSMutableArray *events;
+    NSString *webContentString;
+}
 
 @end
 
@@ -29,14 +35,7 @@ enum kAlertType {
 @synthesize settings = _settings;
 @synthesize theWebView;
 
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
+#pragma mark UIViewController Methods
 
 - (void)viewDidLoad
 {
@@ -62,6 +61,14 @@ enum kAlertType {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [self.managedObjectContext reset];
+}
+
+- (void)viewDidAppear:(BOOL)animated{
+        self.navigationController.toolbarHidden = NO;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
     
     if ([segue.identifier caseInsensitiveCompare:@"showSettings"] == NSOrderedSame) {
@@ -72,7 +79,10 @@ enum kAlertType {
         MDREventsViewController *workEventsDetailViewController = segue.destinationViewController;
         workEventsDetailViewController.eventsArray = [NSArray arrayWithArray:events];
         workEventsDetailViewController.settings = self.settings;
+        workEventsDetailViewController.managedObjectContext = self.managedObjectContext;
+        
     } else if ([segue.identifier caseInsensitiveCompare:@"showHelp"] == NSOrderedSame) {
+        self.navigationController.toolbarHidden = YES;
 
     }
     
@@ -159,7 +169,7 @@ enum kAlertType {
                 newWorkEvent.location = [self.settings eventLocation];
             }
             
-            //check if Time Away
+            //check if Time Away or RTO (Requested Time Off)
             BOOL scanSuccess = false;
             scanSuccess = [scheduleScanner scanUpToString:[dayNameArray objectAtIndex:i] intoString:NULL];
             if (scanSuccess) {
@@ -167,13 +177,31 @@ enum kAlertType {
                 NSRange timeAwayRange = [scheduleString rangeOfString:@"Time Away" 
                                                           options:NSCaseInsensitiveSearch 
                                                             range:scanRange];
+                NSRange RTORange = [scheduleString rangeOfString:@"RTO"
+                                                         options:NSCaseInsensitiveSearch
+                                                           range:scanRange];
                 BOOL onHoliday = timeAwayRange.location != NSNotFound;
+                BOOL isRTODay = RTORange.location != NSNotFound;
+                
                 if (onHoliday) {
                     newWorkEvent.name = @"Holiday";
                     newWorkEvent.location = @"";
                     newWorkEvent.allDay = [NSNumber numberWithBool:TRUE];
+                    startDate.hour = 0;
+                    startDate.minute = 0;
+                    endDate.hour = 0;
+                    endDate.minute = 0;
                 
-                }else {
+                }else if (isRTODay){
+                    newWorkEvent.name = @"RTO";
+                    newWorkEvent.location = @"";
+                    newWorkEvent.allDay = [NSNumber numberWithBool:TRUE];
+                    startDate.hour = 0;
+                    startDate.minute = 0;
+                    endDate.hour = 0;
+                    endDate.minute = 0;
+                
+                } else {
                     
                     //try to extract start date
                     @try {
@@ -215,7 +243,6 @@ enum kAlertType {
                         if ([meridiemString caseInsensitiveCompare:@"pm"] == NSOrderedSame && startDate.hour != 12) {
                             startDate.hour = startDate.hour + 12;
                         }
-                        startDate.timeZone = timeZone;
                     }
                     @catch (NSException *exception) {
                         //handle exception condition
@@ -272,7 +299,6 @@ enum kAlertType {
                         if ([meridiemString caseInsensitiveCompare:@"pm"] == NSOrderedSame && endDate.hour != 12) {
                             endDate.hour = endDate.hour + 12;
                         }
-                        endDate.timeZone = timeZone;
                     }
                     @catch (NSException *exception) {
                         //handle exception condition
@@ -287,12 +313,15 @@ enum kAlertType {
                     @finally {
                         //clean up if necessary
                     }
-                    startDate.day = endDate.day = dateDay + i;
-                    startDate.month = endDate.month = dateMonth;
-                    startDate.year = endDate.year = dateYear;
-                    newWorkEvent.startDate = [userCalendar dateFromComponents:startDate];                
-                    newWorkEvent.endDate = [userCalendar dateFromComponents:endDate];
+                    
                 }
+                startDate.timeZone = timeZone;
+                endDate.timeZone = timeZone;
+                startDate.day = endDate.day = dateDay + i;
+                startDate.month = endDate.month = dateMonth;
+                startDate.year = endDate.year = dateYear;
+                newWorkEvent.startDate = [userCalendar dateFromComponents:startDate];                
+                newWorkEvent.endDate = [userCalendar dateFromComponents:endDate];
             }
             
             [events insertObject:newWorkEvent atIndex:i];
@@ -333,6 +362,8 @@ enum kAlertType {
         exportButton.enabled = YES;
         webContentString = [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML"];
     }
+    backButton.enabled = self.theWebView.canGoBack;
+    forwardButton.enabled = self.theWebView.canGoForward;
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error{
@@ -340,6 +371,7 @@ enum kAlertType {
 }
 
 //- (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
+//    NSLog(@"%@", [request.URL absoluteString]);
 //    return [[[request.URL baseURL] absoluteString] caseInsensitiveCompare:@"mypage.apple.com"] == NSOrderedSame;
 //}
 

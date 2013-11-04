@@ -13,13 +13,13 @@
 #define kMDRCalendarTitleKey        @"calendarTitle"
 #define kMDREventTitleKey           @"eventTitle"
 #define kMDREventLocationKey        @"eventLocation"
-#define kMDRDisplaysOnDaysOffKey    @"displaysOnDaysOff"
+#define kMDRShowDayOffEventKey      @"showDayOffEvents"
 
 typedef enum{
     kCalendarTitleIndex = 0,
     kEventNameIndex,
     kEventLocationIndex,
-    kDisplaysOnDaysOffIndex
+    kShowDayOffEventsIndex
 }settingStoreIndexes;
 
 @interface MDRSettingsStore : NSObject {
@@ -36,7 +36,7 @@ typedef enum{
 - (void)setCalendarTitle:(NSString *)newCalendarTitle;
 - (NSString *)calendarTitle;
 - (BOOL)displaysOnDaysOff;
-- (void)setDisplaysOnDaysOff:(BOOL)shouldDisplay;
+- (void)setShowDayOffEvents:(BOOL)shouldDisplay;
 
 
 @end

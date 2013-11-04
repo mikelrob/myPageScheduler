@@ -11,17 +11,14 @@
 #import "MDRSettingsStore.h"
 
 @interface MDRMainViewController : UIViewController <UIWebViewDelegate>{
-    IBOutlet UIWebView *theWebView;
-    IBOutlet UIBarButtonItem *exportButton;
-    NSMutableArray *events;
-    NSString *webContentString;
+
 }
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 @property (strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (strong, nonatomic) NSManagedObjectModel *managedObjectModel;
 @property (strong, nonatomic) MDRSettingsStore *settings;
-@property (strong, nonatomic) UIWebView *theWebView;
+@property (strong, nonatomic) IBOutlet UIWebView *theWebView;
 
 - (IBAction)exportButtonPressed:(id)sender;
 - (IBAction)settingsButtonPressed:(id)sender;

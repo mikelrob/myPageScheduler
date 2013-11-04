@@ -7,14 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "MDRIndicatorView.h"
 
 @interface MDRWorkEventCell : UITableViewCell
 
-@property (strong, nonatomic) IBOutlet UILabel *workEventNameLabel;
-@property (strong, nonatomic) IBOutlet UILabel *locationLabel;
+@property (strong, nonatomic) IBOutlet UILabel *dayNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *startDateLabel;
 @property (strong, nonatomic) IBOutlet UILabel *endDateLabel;
-@property (strong, nonatomic) IBOutlet MDRIndicatorView *allDayIndicator;
+@property (strong, nonatomic) IBOutlet UILabel *toLabel;
 
 @end

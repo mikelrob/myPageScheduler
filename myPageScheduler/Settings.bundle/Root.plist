@@ -44,9 +44,9 @@
 			<key>DefaultValue</key>
 			<real>0.5</real>
 			<key>Key</key>
-			<string>displaysOnDaysOff</string>
+			<string>showDayOffEvents</string>
 			<key>Title</key>
-			<string>Display Event On Day Off</string>
+			<string>Show Event for Day Off</string>
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 		</dict>

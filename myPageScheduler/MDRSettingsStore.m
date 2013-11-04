@@ -14,7 +14,7 @@
     self = [super init];
     if (self) {
         
-        NSString *key = [NSString stringWithString:kMDREventTitleKey];
+        NSString *key = kMDREventTitleKey;
         NSString *eventTitle = [[NSUserDefaults standardUserDefaults] valueForKey:key];
         if (eventTitle == nil) {
             eventTitle = @"Work";
@@ -25,7 +25,7 @@
         eventTitleSetting.settingType = kTextType;
         eventTitleSetting.key = key;
 
-        key = [NSString stringWithString:kMDREventLocationKey];
+        key = kMDREventLocationKey;
         NSString *eventLocation = [[NSUserDefaults standardUserDefaults] valueForKey:key];
         MDRSetting *eventLocationSetting = [[MDRSetting alloc] init];
         eventLocationSetting.setting = eventLocation;
@@ -33,7 +33,7 @@
         eventLocationSetting.settingType = kTextType;
         eventLocationSetting.key = key;
         
-        key = [NSString stringWithString:kMDRCalendarTitleKey];
+        key = kMDRCalendarTitleKey;
         NSString *calendarTitle = [[NSUserDefaults standardUserDefaults] valueForKey:key];
         MDRSetting *calendarTitleSetting = [[MDRSetting alloc] init];
         calendarTitleSetting.setting = calendarTitle;
@@ -41,16 +41,16 @@
         calendarTitleSetting.settingType = kCalendarType;
         calendarTitleSetting.key = key;
         
-        key = [NSString stringWithString:kMDRDisplaysOnDaysOffKey];
+        key = kMDRShowDayOffEventKey;
         NSNumber *shouldDisplay = [[NSUserDefaults standardUserDefaults] valueForKey:key];
-        MDRSetting *shouldDisplayOnDaysOffSetting = [[MDRSetting alloc] init];
-        shouldDisplayOnDaysOffSetting.setting = shouldDisplay;
-        shouldDisplayOnDaysOffSetting.settingName = @"Display Event On Days Off";
-        shouldDisplayOnDaysOffSetting.settingType = kBoolType;
-        shouldDisplayOnDaysOffSetting.key = key;
+        MDRSetting *shouldDisplayDayOffEvent = [[MDRSetting alloc] init];
+        shouldDisplayDayOffEvent.setting = shouldDisplay;
+        shouldDisplayDayOffEvent.settingName = @"Show Day Off Event";
+        shouldDisplayDayOffEvent.settingType = kBoolType;
+        shouldDisplayDayOffEvent.key = key;
         
         //see header for index list order
-        settingsStore = [[NSArray alloc] initWithObjects:calendarTitleSetting, eventTitleSetting, eventLocationSetting, shouldDisplayOnDaysOffSetting, nil];
+        settingsStore = [[NSArray alloc] initWithObjects:calendarTitleSetting, eventTitleSetting, eventLocationSetting, shouldDisplayDayOffEvent, nil];
         
     }
     return self;
@@ -73,7 +73,7 @@
 - (void)setEventName:(NSString *)newEventName{
     MDRSetting *setting = [settingsStore objectAtIndex:kEventNameIndex];
     setting.setting = newEventName;
-    [[NSUserDefaults standardUserDefaults] setValue:newEventName forKey:@"eventTitle"];
+    [[NSUserDefaults standardUserDefaults] setValue:newEventName forKey:kMDREventTitleKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -85,7 +85,7 @@
 - (void)setEventLocation:(NSString *)newEventLocation{
     MDRSetting *setting = [settingsStore objectAtIndex:kEventLocationIndex];
     setting.setting = newEventLocation;
-    [[NSUserDefaults standardUserDefaults] setValue:newEventLocation forKey:@"eventLocation"];
+    [[NSUserDefaults standardUserDefaults] setValue:newEventLocation forKey:kMDREventLocationKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -97,7 +97,7 @@
 - (void)setCalendarTitle:(NSString *)newCalendarTitle{
     MDRSetting *setting = [settingsStore objectAtIndex:kCalendarTitleIndex];
     setting.setting = newCalendarTitle;
-    [[NSUserDefaults standardUserDefaults] setValue:newCalendarTitle forKey:@"calendarTitle"];
+    [[NSUserDefaults standardUserDefaults] setValue:newCalendarTitle forKey:kMDRCalendarTitleKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
@@ -106,16 +106,16 @@
     return setting.setting;
 }
 
-- (void)setDisplaysOnDaysOff:(BOOL)shouldDisplay{
-    MDRSetting *setting = [settingsStore objectAtIndex:kDisplaysOnDaysOffIndex];
+- (void)setShowDayOffEvents:(BOOL)shouldDisplay{
+    MDRSetting *setting = [settingsStore objectAtIndex:kShowDayOffEventsIndex];
     setting.setting = [NSNumber numberWithBool:shouldDisplay];
-    [[NSUserDefaults standardUserDefaults] setValue:setting.setting forKey:@"displaysOnDaysOff"];
+    [[NSUserDefaults standardUserDefaults] setValue:setting.setting forKey:kMDRShowDayOffEventKey];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
 }
 
 - (BOOL)displaysOnDaysOff{
-    MDRSetting *setting = [settingsStore objectAtIndex:kDisplaysOnDaysOffIndex];
+    MDRSetting *setting = [settingsStore objectAtIndex:kShowDayOffEventsIndex];
     BOOL shouldDisplay = [setting.setting boolValue];
     return shouldDisplay;
 }

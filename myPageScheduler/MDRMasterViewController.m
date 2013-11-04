@@ -1,22 +1,23 @@
 //
-//  MDRSettingViewController.m
+//  MDRMasterViewController.m
 //  myPageScheduler
 //
 //  Created by Michael Robinson on 16/04/2012.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import "MDRSettingViewController.h"
-#import "MDREventsViewController.h"
+#import "MDRMasterViewController.h"
+#import "MDRDetailViewController.h"
 #import "MDRTextSettingCell.h"
 
-@interface MDRSettingViewController ()
+@interface MDRMasterViewController ()
 
 @end
 
-@implementation MDRSettingViewController
+@implementation MDRMasterViewController
 
 @synthesize settings = _settings;
+//@synthesize textSetting = _textSetting;
 
 - (void)awakeFromNib
 {
@@ -34,11 +35,9 @@
     // Release any retained subviews of the main view.
 }
 
-- (void)viewWillAppear:(BOOL)animated{
-    [theTableView reloadData];
-    [theTableView flashScrollIndicators];
-    self.navigationController.toolbarHidden = YES;
-}
+//- (void)viewWillAppear:(BOOL)animated{
+//    [theTableView reloadData];
+//}
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -53,6 +52,10 @@
 }
 
 #pragma mark - IBAction Methods
+
+- (void)textFieldValueChanged:(id)sender{
+    NSLog(@"%@", [sender description]);
+}
 
 
 #pragma mark - Table View
@@ -82,7 +85,6 @@
             textSettingCell.textSettingLabel.text = setting.settingName;
             textSettingCell.textSetting.text = setting.setting;
             textSettingCell.textSetting.delegate = self;
-            textSettingCell.textSetting.key = setting.key;
             cell = textSettingCell;
             break;
         }
@@ -142,10 +144,10 @@
             UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
             if (cell.accessoryType == UITableViewCellAccessoryNone) {
                 cell.accessoryType = UITableViewCellAccessoryCheckmark;
-                [self.settings setShowDayOffEvents:TRUE];
+                [self.settings setDisplaysOnDaysOff:TRUE];
             }else {
                 cell.accessoryType = UITableViewCellAccessoryNone;
-                [self.settings setShowDayOffEvents:FALSE];
+                [self.settings setDisplaysOnDaysOff:FALSE];
             }
             
             break;
@@ -190,17 +192,19 @@
 
 #pragma mark - UITextFieldDelegate Methods
 
-- (void)textFieldDidEndEditing:(MDRTextField *)textField{
-    NSLog(@"%@", textField.text);
-    NSLog(@"%@", textField.key);
-    
-    //select setting to save as per key
-    if ([textField.key caseInsensitiveCompare:kMDREventTitleKey] == NSOrderedSame) {
-        [self.settings setEventName:textField.text];
-    } else if ([textField.key caseInsensitiveCompare:kMDREventLocationKey] == NSOrderedSame) {
-        [self.settings setEventLocation:textField.text];
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    NSLog(@"%@",textField.text);
+    switch (textField.tag) {
+        case 0:
+            [self.settings setEventName:textField.text];
+            break;
+        case 1:
+            [self.settings setEventLocation:textField.text];
+            break;
+        default:
+            break;
     }
-    
+
     [theTableView reloadData];
 }
 

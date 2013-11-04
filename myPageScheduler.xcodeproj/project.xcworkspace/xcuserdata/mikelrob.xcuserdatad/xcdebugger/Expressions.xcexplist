@@ -3,6 +3,9 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "-[MDREventsViewController tableView:numberOfRowsInSection:]:MDREventsViewController.m">
+      </ContextState>
+      <ContextState
          contextName = "-[MDRSettingViewController textFieldDidEndEditing:]:MDRSettingViewController.m">
       </ContextState>
    </ContextStates>

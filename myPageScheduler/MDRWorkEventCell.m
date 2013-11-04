@@ -10,7 +10,7 @@
 
 @implementation MDRWorkEventCell
 
-@synthesize workEventNameLabel, locationLabel, startDateLabel, endDateLabel, allDayIndicator;
+@synthesize dayNameLabel = _dayNameLabel, startDateLabel = _startDateLabel, endDateLabel = _endDateLabel, toLabel = _toLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
